@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/funciones.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Proyecto</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <br><br><br>
+    <div id="container">
+            <div id="texto">
+                <hr>
+                <h1>Bienvenido</h1>
+                <hr>
+                <h4>En este sitio podrá controlar de manera remota los patrones de un cubo 4x4 hechos por leds utilizando una ESP32 </h4>
+            </div>
+            <div id="controladores">
+                <!-- <div id="parrafos">
+                    <p style="text-align: left;">Veloc. máx. 100%</p>
+                    <p style="text-align: center;">0%</p>
+                    <p style="text-align: right;">Veloc. máx. 100%</p>
+                </div> -->
+                <div id="derecha">
+                    <!-- <p>Giro a la izquierda</p> -->
+                    <!-- <input type="range"  name="velocidad"  id="velocidad"  min="-100"  max="100"  step="1"  value="0" onclick="command(velocidad.value)"/> -->
+                    <input type="button" name="encendido" id="encendido" value= "encender" onclick="command(encendido.value)">
+                    <input type="button" name="apagado" id="apagado" value= "apagar" onclick="command(apagado.value)">
+                    <input type="button" name="patron_I" id="patron_I" value= "patron_I" onclick="command(patron_I.value)"> 
+                    <input type="button" name="parpadeo" id="parpadeo" value= "parpadeo" onclick="command(parpadeo.value)"> 
+                    <input type="button" name="caracolInverso" id="caracolInverso" value= "caracolInverso" onclick="command(caracolInverso.value)"> 
+                    <input type="button" name="ilera" id="ilera" value= "ilera" onclick="command(ilera.value)"> 
+                    <!-- <p>Giro a la derecha</p> -->
+                    <br>
+                </div>
+                <!-- <div id="display"></div><br> -->
+            </div>
+
+            
+    </div>
+</body>
+</html>
