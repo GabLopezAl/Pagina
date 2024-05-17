@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/funciones.js"></script>
+    <script type="text/javascript">var clientId = 'client_id' + Math.floor((Math.random() * 1000000) + 1);
+        client = new Paho.MQTT.Client("broker.emqx.io",8084,clientId);
+
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+
+        var options = {
+            useSSL: true,
+            userName: "user",
+            password: "pass",
+            onSuccess: onConnect,
+            onFailure: doFail
+        }
+
+        client.connect(options);
+
+        function onConnect(){
+            console.log("conexion exitosa!!");
+            $("#status").html("Conexion Establecida");
+            //client.subscribe("Programa_de_motor")
+            client.subscribe("Programa_de_motor");
+        }
+
+        function onMessageArrived(message){
+            console.log("Un mensaje ha llegado: " + message.payloadString);
+            $("#display").html(message.payloadString);
+        }
+
+        function doFail(e){
+            console.log(e);
+        }
+
+        function onConnectionLost(responseObject){
+            if(responseObject.errorCode !== 0){
+                console.log("onConnectionLost: " + responseObject.errorMessage);
+            }
+        }
+
+        function command(value){
+            console.log(value);
+            message = new Paho.MQTT.Message(value);
+            message.destinationName = "Entrada_motor";
+            client.send(message);
+        }</script>
     <link rel="stylesheet" href="css/style.css">
     <title>Proyecto</title>
 </head>
